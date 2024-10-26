@@ -1,0 +1,40 @@
+@startuml
+
+actor Pracownik
+actor Klient
+actor Bank 
+
+usecase "Odbiór przesyłki" as Odbior
+usecase "Indetyfikacja osoby" as Identyfikacja
+usecase "Znalezienie przesyłki" as Znalezienie
+usecase "Przekazanie przesyłki" as Przekazanie
+usecase "Nadanie paczki" as NadaniePaczki
+usecase "Opłata" as Oplata
+usecase "Opłata kartą" as Karta
+usecase "Opłata gotówką" as Gotowka
+
+Pracownik -- Odbior
+Pracownik -- Identyfikacja
+Pracownik -- Znalezienie
+Pracownik -- Przekazanie
+Pracownik -- NadaniePaczki
+Pracownik -- Oplata
+Bank -- Karta
+
+Klient -- Odbior
+Klient -- Identyfikacja
+Klient -- Przekazanie
+Klient -- NadaniePaczki
+Klient -- Oplata
+
+Odbior --> Identyfikacja : <<invoke>>
+Identyfikacja --> Znalezienie : <<invoke>>
+Znalezienie --> Przekazanie : <<invoke>>
+NadaniePaczki --> Odbior : <<invoke>>
+
+
+Gotowka -up-|> Oplata
+Karta -up-|> Oplata
+'Karta --> Oplata : <<extends>> 
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml
+
+actor Listonosz
+actor Pracownik
+actor Klient
+actor Bank 
+
+usecase "Przyjęcie poczty" as OdbiorPoczty
+usecase "Sortowanie poczty" as Sortowanie
+usecase "Odbiór listu poleconego" as OdbiorPrzesylki
+usecase "Identyfikacja osoby" as Identyfikacja
+usecase "Znalezienie przesyłki" as Znalezienie
+usecase "Potwierdzenie odbioru" as Potwierdzenie
+usecase "Wysłanie listu poleconego" as Wyslanie
+usecase "Opłata" as Oplata
+usecase "Opłata Gotowką" as Gotowka
+usecase "Opłata Kartą" as Karta
+
+Listonosz -- OdbiorPoczty
+
+Pracownik -- OdbiorPoczty
+Pracownik -- Sortowanie
+Pracownik -- OdbiorPrzesylki
+Pracownik -- Identyfikacja
+Pracownik -- Znalezienie
+Pracownik -- Potwierdzenie
+Pracownik -- Wyslanie
+Pracownik -- Oplata
+
+Klient -- OdbiorPrzesylki
+Klient -- Identyfikacja
+Klient -- Potwierdzenie
+Klient -- Wyslanie
+Klient -- Oplata
+
+Bank -- Karta
+
+OdbiorPoczty -- Sortowanie : <<invoke>>
+OdbiorPrzesylki -- Identyfikacja : <<invoke>>
+Identyfikacja -- Potwierdzenie : <<invoke>>
+
+Wyslanie -- Oplata : <<invoke>>
+Gotowka -up-|> Oplata
+' Oplata <|-down- Gotowka
+Karta -up-|> Oplata
+' Oplata <-- Karta : <<extends>>
+
+@enduml
