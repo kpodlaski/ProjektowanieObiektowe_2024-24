@@ -1,0 +1,60 @@
+@startuml
+
+class Klient{}
+ 
+note left of Klient 
+Czy może nie być na diagramie klasy Klient ?
+end note
+class Czlowiek{
+    id
+    imie
+    nazwisko
+    uprawnienia
+}
+class Pracownik{
+    przyjeciePrzesylek(przesylki)
+    wydaniePrzesylki(adres)
+}
+class Listonosz{
+    dostawaPrzesylek()
+    odbiorPrzesylek(przesylki)
+}
+class Bank{
+    platnoscKarta(cena):PotwierdzenieTransakcji
+}
+class Przesylka{
+    id
+    adres 
+    nadawca
+    waga
+    wymiary
+    priorytet
+    cena
+}
+class Paragon{
+    cena
+}
+class PotwierdzenieOdbioru{}
+class PotwierdzenieTransakcji{
+    cena
+}
+class Faktura{
+    vat
+    kwota
+}
+class Magazyn{
+    'Przesylki[]
+    dodanie(przesylka:Przesylka)
+    pobranie(adres)
+}
+
+Czlowiek <|-- Pracownik
+Czlowiek <|-- Listonosz
+
+Przesylka --o "przesylki" Magazyn  
+Przesylka -- PotwierdzenieOdbioru
+Paragon -- Przesylka
+Faktura -- Paragon
+Bank --> PotwierdzenieTransakcji : <<tworzy>>
+Pracownik -- Magazyn
+@enduml
