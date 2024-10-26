@@ -1,0 +1,125 @@
+@startuml
+
+actor Kierowca
+actor Zamawiajacy
+actor Dyspozytor
+actor "Podróżujący" as Podrozujacy
+actor Bank 
+actor "System Informatyczny" as ITSystem
+actor "Osoba Planująca" as Planner 
+' Poza zagadnieniami biznesowymi firmy
+'actor Serwisant
+'usecase Serwis
+
+
+usecase "Zamowienie taksówki" as Zamowienie
+usecase "Zamowineie w aplikacji" as ZamMob
+usecase "Zamowienie telefoniczne" as ZamPh
+usecase "Zamówienie osobiste" as ZamNaUlicy
+Zamowienie <|-- ZamMob
+Zamowienie <|-- ZamPh
+Zamowienie <|-- ZamNaUlicy
+Zamawiajacy -- Zamowienie
+Dyspozytor -- ZamPh
+ITSystem -- ZamMob
+Kierowca -- ZamNaUlicy
+Podrozujacy -- ZamNaUlicy
+
+
+
+usecase "Płatność" as Platnosc
+usecase "Płatność Kart" as PlatnoscKarta
+usecase "Płatność Blik" as PlatnoscBlik
+usecase "Płatność Gotówką" as PlatnoscGotowka
+usecase "Płatność Przelewem" as PlatnoscPrzelew
+Platnosc <|-- PlatnoscBlik
+Platnosc <|-- PlatnoscKarta
+Platnosc <|-- PlatnoscGotowka
+Platnosc <|-- PlatnoscPrzelew
+Platnosc -- Podrozujacy
+Kierowca -- PlatnoscBlik
+Kierowca -- PlatnoscGotowka
+Kierowca -- PlatnoscKarta
+ITSystem -- PlatnoscPrzelew
+Zamawiajacy -- PlatnoscPrzelew
+Bank -- PlatnoscBlik
+Bank -- PlatnoscKarta
+Bank -- PlatnoscPrzelew
+
+
+usecase "Podanie lokalizacji" as Lokalizacja
+'usecase "Podanie ustne" as LokalizacjaWywiad
+usecase "Podanie aplikacja" as LokalizacjaMob
+'usecase "Podanie telefonicznie" as LokalizacjaPh
+Lokalizacja <|-- LokalizacjaMob
+'Lokalizacja <|-- LokalizacjaPh
+'Lokalizacja <|-- LokalizacjaWywiad
+
+Lokalizacja -- Podrozujacy
+Lokalizacja -- Kierowca
+Lokalizacja -- ITSystem
+
+usecase Autoryzacja
+usecase Przejazd
+usecase Planowanie
+usecase "Potwierdzenie przyjęcia zlecenia" as Potwierdzenie
+Kierowca -- Autoryzacja
+Podrozujacy -- Autoryzacja
+Kierowca -- Przejazd
+Podrozujacy -- Przejazd
+Planner -- Planowanie
+ITSystem -- Planowanie
+Dyspozytor -- Planowanie
+ITSystem -- Potwierdzenie
+Zamawiajacy -- Potwierdzenie
+
+usecase "Wystawienie opinii" as Opinia
+usecase "Wystawienie opinii emailem" as OpiniaEmail
+usecase "Wystawienie opinii w aplikacji" as OpiniaMob
+Opinia <|-- OpiniaEmail
+Opinia <|-- OpiniaMob
+Zamawiajacy -- Opinia
+
+usecase "Zlecenie dla kierowcy" as Zlecenie
+usecase "Przyjecie zlecenia" as Akceptacja
+usecase "Odrzucenie zlecenia" as Odrzucenie
+Dyspozytor -- Zlecenie
+ITSystem -- Zlecenie
+Kierowca -- Zlecenie
+
+Akceptacja -- Kierowca
+Akceptacja -- ITSystem
+
+Odrzucenie -- Kierowca
+Odrzucenie -- ITSystem
+
+
+
+'Elementy rozwojowe 
+
+' actor Policja
+' usecase Interwencj
+' usecase "Odmowa Płatności" as OdmowaPlatnosci
+' a
+' OdmowaPlatnosci -- Kierowca
+' OdmowaPlatnosci -- Podrozujacy
+
+' Interwencja -- Policja
+' Interwencja -- Kierowca
+' Interwencja -- Podrozujacy
+
+' OdmowaPlatnosci --> Interwencja : <<invoke>>
+
+
+' actor Podwykonawca
+' Podwykonawca --|> Kierowca
+' Usluga --|> Przejazd
+' Podwykonawca -- Usluga
+' usecase "Usługa" as Usluga
+
+
+
+
+
+
+@enduml
