@@ -1,0 +1,46 @@
+@startuml
+
+actor Klient
+actor Kierowca
+actor Dyspozytor
+actor Bank 
+actor "System Zarządzania Przejazdami" as SZP 
+
+usecase "Zamówienie przejazdu" as Zamowienie
+usecase "Przydzielenie kierowcy" as Przydzial
+usecase "Zebranie danych o zamówieniu" as DataCollection
+usecase "Odebranie klienta" as Odbior
+usecase Przejazd
+usecase "Ocena usługi" as Ocena
+usecase "Płatność" as Platnosc
+usecase "Płatność Karta" as PlatnoscKarta
+usecase "Płatność Gotowką" as PlatnoscGotowka
+
+Klient -- Zamowienie
+Klient -- DataCollection
+Klient -- Ocena
+Klient -- Odbior
+Klient -- Platnosc
+Klient -- Przejazd
+
+Kierowca -- Przejazd
+Kierowca -- Odbior
+Kierowca -- Przydzial
+Kierowca -- Platnosc
+
+Dyspozytor -- Zamowienie
+Dyspozytor -- Przydzial
+Dyspozytor -- DataCollection
+
+SZP -- Przydzial
+Bank -- PlatnoscKarta
+
+Zamowienie --> DataCollection : <<include>>
+Zamowienie --> Przydzial : <<include>>
+
+Odbior --> Przejazd : <<invoke>>
+Przejazd --> Platnosc : <<invoke>>
+
+PlatnoscKarta --|> Platnosc
+PlatnoscGotowka --|> Platnosc
+@enduml
