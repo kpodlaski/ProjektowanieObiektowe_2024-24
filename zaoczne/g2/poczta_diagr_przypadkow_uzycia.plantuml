@@ -30,7 +30,7 @@ Klient -- Oplata
 Odbior --> Identyfikacja : <<invoke>>
 Identyfikacja --> Znalezienie : <<invoke>>
 Znalezienie --> Przekazanie : <<invoke>>
-NadaniePaczki --> Odbior : <<invoke>>
+Oplata <-- Odbior : <<invoke>>
 
 
 Gotowka -up-|> Oplata

@@ -1,0 +1,51 @@
+@startuml
+
+class Pracownik{}
+class Bank {} 
+class Klient{}
+class Kurier {}
+class Osoba{
+    id
+    imie 
+    nazwisko
+}
+class Przesylka{
+    id 
+    adres
+    cena 
+    priorytet
+    'potwierdzenie : Potwierdzenie 
+}
+class Paczka{
+    rozmiar
+    waga
+}
+
+class Potwierdzenie {}
+
+class Magazyn{
+    'przesylki : Przesylka[]
+    dodajPrzesylke(przesylka)
+    pobierzPrzesylke(adres): Przesylka
+}
+
+class Paragon{ 
+    cena
+}
+class Termial{}
+class Faktura{ 
+    cena
+}
+class PotwierdzenieTransakcji{ 
+    cena
+    status
+}
+
+Terminal ..> PotwierdzenieTransakcji : <<creates>> 
+Paczka --|> Przesylka
+Potwierdzenie -- "potwierdzenie" Przesylka
+Magazyn "przesylki" o-- Przesylka
+Termial -- Bank
+Kurier --|> Osoba
+Pracownik --|> Osoba
+@enduml

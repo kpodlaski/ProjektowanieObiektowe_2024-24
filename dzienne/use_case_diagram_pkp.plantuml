@@ -1,0 +1,52 @@
+@startuml
+
+actor "Pasażer" as Pasazer
+actor "Pasażer z ograniczeniami" as PasazerNiepelnosprawny
+actor "Pracownik PKP" as Pracownik
+actor Konduktor
+actor Kasjer
+actor "System PKP" as System
+
+Konduktor -up-|> Pracownik
+Kasjer -up-|> Pracownik
+Pasazer <|-- PasazerNiepelnosprawny 
+
+usecase "Kupowanie biletu" as Zakup
+usecase "Wyszukiwanie połączeń" as Wyszukiwanie
+usecase "Wyszukiwanie w informacji" as WyszukiwanieInformacja
+usecase "Wyszukiwanie zdalne" as WyszukiwanieZdalne
+usecase Przejazd
+usecase "Wsiadanie do pociagu" as Wsiadanie
+usecase "Wsiadanie ze wspomaganiem" as WsiadanieWspomagane
+usecase "Wysiadanie z pociagu" as Wysiadanie
+usecase "Wysiadanie ze wspomaganiem" as WysiadanieWspomagane
+usecase "Kontrola biletów" as Kontrola
+
+Pasazer -- Zakup
+Pasazer -- Wyszukiwanie
+Pasazer -- Przejazd
+Pasazer -- Wsiadanie
+Pasazer -- Wysiadanie
+
+PasazerNiepelnosprawny -- WsiadanieWspomagane
+PasazerNiepelnosprawny -- WysiadanieWspomagane
+
+Konduktor -- Przejazd
+Konduktor -- Kontrola
+Kasjer -- Zakup
+Kasjer -- WyszukiwanieInformacja
+
+System -- WyszukiwanieZdalne
+System -- Wyszukiwanie
+
+
+Przejazd --> Wsiadanie : <<include>>
+Przejazd --> Wysiadanie : <<include>>
+Przejazd --> Kontrola : <<include>>
+
+Wsiadanie <|-- WsiadanieWspomagane
+Wysiadanie <|-- WysiadanieWspomagane
+
+WyszukiwanieInformacja --|> Wyszukiwanie
+WyszukiwanieZdalne --|> Wyszukiwanie
+@enduml
