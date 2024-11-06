@@ -1,0 +1,35 @@
+@startuml
+
+actor Trener 
+actor Sprzedawca 
+actor Klient 
+actor "Osoba sprzątająca" as Sprzatajacy
+actor Pracownik
+actor "Serwisant urządzeń" as Serwisant
+
+Trener --|> Pracownik
+Sprzedawca --|> Pracownik
+Sprzatajacy --|> Pracownik
+Serwisant --|> Pracownik
+
+usecase "Sprzedaż biletu" 
+usecase "Sprzedarz karnetu"
+usecase "Kontrola członkostwa"
+usecase "Wydawanie kluczy"
+usecase "Sprzedarz akcesoriów"
+usecase "Sprzątanie"
+usecase "Sprzątanie maszyn"
+usecase "Sprzątanie szatni"
+usecase "Serwis urządzeń"
+usecase "Przebieranie"
+usecase "Przysznic"
+usecase "Sauna"
+usecase "Trening"
+usecase "Trening z trenerem"
+usecase "Trening indywidualny"
+usecase "Trening w grupie"
+usecase "Uzupełnianie automatów"
+
+
+
+@enduml
