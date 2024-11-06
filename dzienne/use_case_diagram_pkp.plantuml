@@ -34,10 +34,14 @@ Pasazer -- Wyszukiwanie
 Pasazer -- Przejazd
 Pasazer -- Wsiadanie
 Pasazer -- Wysiadanie
+Pasazer -- Kontrola
 PasazerNiepelnosprawny -- WsiadanieWspomagane
 PasazerNiepelnosprawny -- WysiadanieWspomagane
 Konduktor -- Przejazd
 Konduktor -- Kontrola
+Konduktor -- WsiadanieWspomagane
+Konduktor -- WysiadanieWspomagane
+
 Kasjer -- Zakup
 Kasjer -- WyszukiwanieInformacja
 System -- WyszukiwanieZdalne
