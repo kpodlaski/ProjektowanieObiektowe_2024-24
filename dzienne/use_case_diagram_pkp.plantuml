@@ -46,6 +46,7 @@ Kasjer -- Zakup
 Kasjer -- WyszukiwanieInformacja
 System -- WyszukiwanieZdalne
 System -- Wyszukiwanie
+System -- Zakup
 
 Przejazd ..> Wsiadanie : <<include>>
 Przejazd ..> Wysiadanie : <<include>>

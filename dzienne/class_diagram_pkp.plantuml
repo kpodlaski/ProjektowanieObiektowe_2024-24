@@ -1,0 +1,63 @@
+@startuml
+
+class Pracownik {
+    imie
+    nazwisko
+}
+class Konduktor {}
+class Kasjer {}
+class Pasazer {
+    wsiadaDo(pociag)
+    wysiadaZPociagu()
+}
+class PasazerZOgraniczeniami {
+    wsiadaDo(pociag)
+    wysiadaZPociagu()
+}
+class SystemPKP {
+
+    biletNaKurs(st_pocz, st_kon):Bilet
+}
+
+class Peron{
+    'tory : Tor[]
+}
+class Tor { 
+    'peron: Peron
+}
+class Kurs{
+    numer_pociagu
+    stacje[]
+}
+class Bilet {
+    rodzaj_biletu 
+    cena
+    stacja_pocz
+    stacja_konc
+}
+
+class Miejscowka{
+    kurs
+    miejsce
+}
+
+Bilet o-- Miejscowka
+
+class Pociag{}
+
+'Czy potrzebujemy klasy Stacja ?
+'Relacja Tor, Pociag, Kurs. Tor planowany i faktyczny 
+'Relacja Tor, Kurs, Stacja -- w rozkładzie
+'Relacja Kurs, Stacja, Godzina
+
+Konduktor --|> Pracownik
+Kasjer --|> Pracownik
+PasazerZOgraniczeniami --|> Pasazer
+'Peron  "*" -- "1"  Tor
+Peron "tory" o-- "peron"  Tor
+Pociag -- Kurs
+Konduktor --o Pociag
+Kasjer -- SystemPKP
+Pasazer o-- Bilet
+Pasazer -- Pociag
+@enduml

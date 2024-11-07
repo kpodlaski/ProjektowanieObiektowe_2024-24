@@ -29,6 +29,7 @@ usecase "Trening z trenerem"
 usecase "Trening indywidualny"
 usecase "Trening w grupie"
 usecase "Uzupełnianie automatów"
+usecase "Kupno w automacie"
 
 
 
