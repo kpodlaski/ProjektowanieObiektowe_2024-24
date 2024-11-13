@@ -1,0 +1,29 @@
+@startuml
+
+(*) --> "Wejście na peron"
+--> "Czekanie na pociąg" as Czekanie
+if "Czy nasz pociąg podjechał ?" then 
+--> [tak] "Wsiadamy do wagonu" as Wsiadanie
+else
+-left-> [nie] Czekanie
+endif
+'Można (wpadało by) dodać pasażerów 
+'z niepełnosprawnościami
+Wsiadanie --> "Zajmowanie miejsca" as Siadamy
+if "Co robimy ? " as Warunek then
+--> [Czekamy] "Robimy swoje" as NicSieNiedzieje
+--> Warunek
+else 
+--> [Kontrola] "Kontrola biletów"
+' Dokładniejszy opis kontroli
+--> Warunek
+else 
+--> [Chcemy jeść] "Idziemy do Warsu"  
+--> "Spożywamy"
+--> "Siadamy"
+else 
+--> [Stacja końcowa] "Wysiadamy" 
+-->(*)
+endif
+
+@enduml
