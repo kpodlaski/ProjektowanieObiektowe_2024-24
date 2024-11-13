@@ -14,7 +14,7 @@ if "Co robimy ? " as Warunek then
 --> [Czekamy] "Robimy swoje" as NicSieNiedzieje
 --> Warunek
 else 
---> [Kontrola] "Kontrola biletów"
+--> [Kontrola] "Kontrola biletów" as Kontrola
 ' Dokładniejszy opis kontroli
 --> Warunek
 else 
@@ -26,4 +26,17 @@ else
 -->(*)
 endif
 
+Kontrola --> "Pokazanie biletu"
+--> ===A===
+--> "Weryfikacja przez konduktora"
+--> ===B===
+===A=== --> "Weryfikacja w systemie"
+--> ===B===
+if "Czy bilet poprawny?" then 
+--> [tak] Warunek
+else
+--> [nie] "Pobranie opłaty"
+--> "Wystawienie biletu"
+--> Warunek
+endif
 @enduml
