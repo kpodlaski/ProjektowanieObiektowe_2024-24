@@ -1,0 +1,38 @@
+@startuml
+
+participant "Pasażer" as Pasazer
+participant "Pociąg" as Pociag
+participant Peron
+
+Pasazer -> Pasazer :wejscieNaPeron(Peron)
+loop "dopóki pociąg nie nadjedzie" 
+Pasazer -> Peron : czyJestPociag()
+Peron --> Pasazer : pociag
+'można usczegółowić ten element
+end
+
+Pasazer -> Pasazer : wsiadanieDo(pociag)
+activate Pasazer
+Pasazer -> Pociag : wsiadam(pasazer)
+activate Pociag
+return
+return
+
+alt "kontrola biletów"
+participant Konduktor
+Konduktor -> Pociag : listaPasazerow()
+return pasazerowie
+Konduktor -> Pasazer : pokazBilet()
+Pasazer -->Konduktor: bilet
+alt "bilet poprawny"
+Konduktor -> Pasazer : ok
+else "zly bilet lub brak"
+Konduktor -> Pasazer : mandat, bilet, kwota
+'Konduktor -> Pasazer : bilet
+Pasazer --> Konduktor : wykonanieOplaty(kwota)
+end
+
+end
+
+
+@enduml
