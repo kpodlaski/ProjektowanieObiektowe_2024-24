@@ -31,7 +31,7 @@ Odbior --> Identyfikacja : <<invoke>>
 Identyfikacja --> Znalezienie : <<invoke>>
 Znalezienie --> Przekazanie : <<invoke>>
 Oplata <-- Odbior : <<invoke>>
-
+NadaniePaczki --> Oplata : <<invoke>>
 
 Gotowka -up-|> Oplata
 Karta -up-|> Oplata

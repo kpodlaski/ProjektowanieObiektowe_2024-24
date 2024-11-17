@@ -1,0 +1,27 @@
+@startuml
+
+(*) --> "Wejście na Pocztę"
+--> "Podanie adresu przesyłki"
+--> "Znalezienie informacji oprzeyłce w systemie IT"
+'Co jeśli przesyłki nie ma
+'Na poczcie są dwie osoby, 
+' - jedna obsługuje klientów a 
+' - druga magazyn
+--> ===A===
+--> "Zlecenie znalezienia przyłki"
+--> "Znalezienie przesyłki"
+--> "Przekazanie z Magazynu"
+--> ===B===
+===A=== --> "Weryfikacja danych odbiorcy"
+if "Rodzaj przesyłki" then 
+--> [polcony] "Podpis odbioru" as Podpis
+else 
+-->  [normalny] ===B=== 
+--> "Wydanie przesyłki" 
+--> (*)
+else 
+--> [sądowy] "Weryfikacja uprawnień"
+--> Podpis
+---> ===B===
+endif
+@enduml
