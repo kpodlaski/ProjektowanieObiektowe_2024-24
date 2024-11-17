@@ -1,0 +1,40 @@
+@startuml
+
+participant "klient:Klient" as klient
+participant "pracownik:Pracownik" as pracownik
+participant "magazynier:Pracownik" as magazynier
+participant ITSystem
+klient -> pracownik : odbior(adres)
+activate pracownik
+pracownik -> ITSystem : numerPrzesylki(adres)
+activate ITSystem
+'return idprzesylki
+ITSystem --> pracownik : idprzesylki, adresat, typrzesylki
+deactivate ITSystem
+pracownik -> magazynier : pobierzPrzesylke(idprzesylki)
+activate magazynier
+alt wymaga weryfikacji prostej
+pracownik -> klient : prosbaODowod()
+activate klient
+return dowod
+
+pracownik -> pracownik: weryfikacjaDanych(dowod, adresat)
+activate pracownik
+return
+else wymaga weryfikacji dokładnej
+pracownik -> klient : prosbaODowod()
+activate klient
+return dowod
+pracownik -> pracownik: weryfikacjaDokladnaDanych(dowod, adresat)
+activate pracownik
+return
+end
+magazynier --> pracownik: przesylka fizyczna
+deactivate magazynier
+pracownik -> klient: podpis()
+activate klient
+return
+pracownik --> klient : przesylka fizyczna
+deactivate pracownik
+
+@enduml
