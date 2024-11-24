@@ -1,0 +1,34 @@
+@startuml
+
+actor "klient:Klient" as klient
+participant Pracownik
+participant Magazyn
+participant SystemIT
+
+klient -> Pracownik : wydaniePrzesylki(adres)
+activate Pracownik
+Pracownik -> SystemIT : przesylka(adres)
+activate SystemIT
+return przesylka
+Pracownik -> Magazyn : wydanie(przesylka)
+activate Magazyn
+alt [przesylka polecona]
+Pracownik -> klient : dokumentTozsamosci
+klient -->Pracownik: dokument
+Pracownik -> Pracownik : weryfikacja(dokument, przesylka)
+Pracownik -> klient : podpisProtokolu()
+klient --> Pracownik 
+else [polecony z opłatą]
+Pracownik -> klient : oplata(kwota)
+klient --> Pracownik
+Pracownik -> klient : dokumentTozsamosci
+klient -->Pracownik: dokument
+Pracownik -> Pracownik : weryfikacja(dokument, przesylka)
+Pracownik -> klient : podpisProtokolu()
+klient --> Pracownik 
+end
+Magazyn --> Pracownik : przesylka_asset
+deactivate Magazyn
+Pracownik --> klient : przesylka_asset
+deactivate Pracownik
+@enduml

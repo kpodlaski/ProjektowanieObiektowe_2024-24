@@ -48,13 +48,19 @@ class Magazyn{
     pobranie(adres)
 }
 
+class SystemIT{
+
+}
+
 Czlowiek <|-- Pracownik
 Czlowiek <|-- Listonosz
 
-Przesylka --o "przesylki" Magazyn  
+SystemIT --o "przesylki" Przesylka  
 Przesylka -- PotwierdzenieOdbioru
 Paragon -- Przesylka
 Faktura -- Paragon
 Bank --> PotwierdzenieTransakcji : <<tworzy>>
 Pracownik -- Magazyn
+Pracownik -- SystemIT
+Magazyn -- SystemIT
 @enduml
