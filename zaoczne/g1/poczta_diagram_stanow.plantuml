@@ -1,0 +1,12 @@
+@startuml
+[*] -> Przesylka : dostarczono asset
+Przesylka : id 
+Przesylka : adresat
+Przesylka -> Przesylka : przekazano do Magazynu
+Przesylka : naMagazynie:Boolean
+Przesylka -> Przesylka : pobranie z Magazynu
+Przesylka -down-> Przesylka_Archiwalna : Wydanie Klientowi
+Przesylka_Archiwalna : przesylka_kopia
+Przesylka_Archiwalna : data odbioru
+Przesylka_Archiwalna -> [*]
+@enduml

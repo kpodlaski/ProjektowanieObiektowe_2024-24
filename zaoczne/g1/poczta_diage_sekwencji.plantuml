@@ -10,8 +10,9 @@ activate Pracownik
 Pracownik -> SystemIT : przesylka(adres)
 activate SystemIT
 return przesylka
-Pracownik -> Magazyn : wydanie(przesylka)
-activate Magazyn
+' Osobny wątek więc w innym kolorze 
+Pracownik -[#green]> Magazyn : wydanie(przesylka)
+activate Magazyn #green
 alt [przesylka polecona]
 Pracownik -> klient : dokumentTozsamosci
 klient -->Pracownik: dokument
@@ -27,7 +28,7 @@ Pracownik -> Pracownik : weryfikacja(dokument, przesylka)
 Pracownik -> klient : podpisProtokolu()
 klient --> Pracownik 
 end
-Magazyn --> Pracownik : przesylka_asset
+Magazyn -[#green]-> Pracownik : przesylka_asset 
 deactivate Magazyn
 Pracownik --> klient : przesylka_asset
 deactivate Pracownik
