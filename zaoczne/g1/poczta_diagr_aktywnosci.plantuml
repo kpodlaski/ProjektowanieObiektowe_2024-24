@@ -1,0 +1,16 @@
+(*) --> "Podejście klienta do okienka"
+--> "Podanie adresu odbiorcy/awizo"
+--> "Wyszukanie informacji o przesyłce"
+--> ===A===
+--> "Wyszukanie przesyłki w magazynie"
+--> ===B===
+===A=== --> if "rodzaj przesyłki" then 
+--> [list polecony] "Prośba o dokument" as dokument
+--> "Podpis protokołu odbioru"
+--> ===B=== 
+else 
+--> [polecony z opłatą] "opłata"
+--> dokument
+endif
+===B=== --> "Wydanie przesyłki"
+--> (*)
